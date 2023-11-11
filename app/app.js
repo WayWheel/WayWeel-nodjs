@@ -7,6 +7,8 @@ const authRoutes = require('./routes/authRoutes');
 const adminRoutes = require('./routes/adminRoutes');
 const passwordResetRoutes = require('./routes/passwordResetRoutes');
 const contactRoutes = require('./routes/contactRoutes');
+const userProfileRoutes = require('./routes/userProfileRoutes');
+
 require('dotenv').config();
 
 
@@ -58,6 +60,10 @@ app.use('/auth', authRoutes);
 app.use('/admin', adminRoutes);
 app.use('/password', passwordResetRoutes);
 app.use('/api/contacts', contactRoutes);
+
+//user
+// Routes
+app.use('/api/user-profile', userProfileRoutes);
 
 app.use('/auth/logout',(req, res) => {
   req.session.destroy();
