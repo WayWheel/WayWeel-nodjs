@@ -1,5 +1,5 @@
 const express = require('express');
-const passport = require('./config/passport');
+// const passport = require('./config/passport');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const session = require('express-session');
@@ -45,8 +45,8 @@ app.use(
 );
 
 // Initialize Passport and session
-app.use(passport.initialize());
-app.use(passport.session());
+// app.use(passport.initialize());
+// app.use(passport.session());
 
 // // EJS setup
 // app.set('view engine', 'ejs');
