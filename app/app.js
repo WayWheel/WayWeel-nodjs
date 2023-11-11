@@ -17,6 +17,7 @@ const app = express();
 // mongoose.connect('MONGODB_ATLAS_CONNECTION_STRING', { useNewUrlParser: true, useUnifiedTopology: true });
 const MONGODB_URI = process.env.MONGODB_ATLAS_CONNECTION_STRING;
 
+
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 // Connect to MongoDB
