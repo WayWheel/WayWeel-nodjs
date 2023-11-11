@@ -64,6 +64,11 @@ app.use('/auth/logout',(req, res) => {
   res.send("See you again");
 })
 
+app.get("/", (req, res) => {
+  res.send("Express on Vercel");
+});
+
+
 // Start the server
 const port = process.env.PORT || 3000;
 app.listen(port, () => {
