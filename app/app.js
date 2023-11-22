@@ -9,7 +9,7 @@ const passwordResetRoutes = require('./routes/passwordResetRoutes');
 const contactRoutes = require('./routes/contactRoutes');
 const userProfileRoutes = require('./routes/userProfileRoutes');
 const mobileLoginRoutes = require('./routes/mobileLoginRoutes');
-
+const bookingRoutes = require('./routes/bookingRoutes');
 
 require('dotenv').config();
 
@@ -62,6 +62,9 @@ app.use('/auth', authRoutes);
 app.use('/admin', adminRoutes);
 app.use('/password', passwordResetRoutes);
 app.use('/api/contacts', contactRoutes);
+
+// Use booking routes
+app.use('/api', bookingRoutes);
 
 //user
 // Routes
