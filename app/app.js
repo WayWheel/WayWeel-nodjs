@@ -10,6 +10,8 @@ const contactRoutes = require('./routes/contactRoutes');
 const userProfileRoutes = require('./routes/userProfileRoutes');
 const mobileLoginRoutes = require('./routes/mobileLoginRoutes');
 const bookingRoutes = require('./routes/bookingRoutes');
+const vehicleRoutes = require('./routes/vehicleRoutes');
+
 
 require('dotenv').config();
 
@@ -65,6 +67,8 @@ app.use('/api/contacts', contactRoutes);
 
 // Use booking routes
 app.use('/api', bookingRoutes);
+// Use vehicle routes
+app.use('/api', vehicleRoutes);
 
 //user
 // Routes
