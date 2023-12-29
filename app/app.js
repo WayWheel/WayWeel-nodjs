@@ -60,7 +60,7 @@ app.use(
 // app.set('views', 'views');
 
 // Routes
-app.use('/auth', authRoutes);
+// app.use('/auth', authRoutes);
 app.use('/admin', adminRoutes);
 app.use('/password', passwordResetRoutes);
 app.use('/api/contacts', contactRoutes);
@@ -72,8 +72,67 @@ app.use('/api', vehicleRoutes);
 
 //user
 // Routes
-app.use('/api/user-profile', userProfileRoutes);
+app.use('/api/user-profile', userProfileRoutes); 
+app.use('/api/auth', userProfileRoutes); 
 app.use('/api/login', mobileLoginRoutes);
+
+// Define the login route
+// app.post('/api/auth/login', validateLoginBody, async (req, res) => {
+//   const { mobileNumber } = req.body;
+
+//   // Simulate user data retrieval based on the provided mobile number
+//   // Replace this with your actual user authentication logic
+//   // For example, querying a database to find the user by mobile number
+//   User.findOne({ mobileNumber }) // Assuming you have a User model
+//     .then(async (user) => {
+//       if (!user) {
+//         return res.status(404).json({ success: false, message: 'User not found' });
+//       }
+
+//       // Check if a profile with the user's mobile number already exists
+//       const existingProfile = await Profile.findOne({ mobileNumber });
+
+//       if (existingProfile) {
+//         // If a profile with the mobile number already exists, respond with an error
+//         return res.status(400).json({ error: 'Mobile number must be unique' });
+//       }
+
+//       // If the user is found and no profile exists, create a profile
+//       const newProfile = new Profile({
+//         fullname: user.name,
+//         email: user.email,
+//         mobileNumber: user.mobileNumber,
+//         city: user.city,
+//         referralCode: user.referralCode,
+//       });
+
+//       // Save the profile to the database
+//       const savedProfile = await newProfile.save();
+
+//       // Create a JWT token for the user
+//       const token = jwt.sign({ userId: user.userId }, 'your_secret_key', { expiresIn: '1h' });
+
+//       // Respond with success, the token, and the user's profile
+//       res.json({
+//         success: true,
+//         token: token,
+//         user: {
+//           userId: user.userId,
+//           name: user.name,
+//           email: user.email,
+//           mobileNumber: user.mobileNumber,
+//           city: user.city,
+//           referralCode: user.referralCode,
+//           profile: savedProfile // Include the created profile in the response
+//         }
+//       });
+//     })
+//     .catch(error => {
+//       console.error('Error during login:', error);
+//       res.status(500).json({ success: false, message: 'Internal server error' });
+//     });
+// });
+
 
 app.use('/auth/logout',(req, res) => {
   req.session.destroy();

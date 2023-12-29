@@ -4,5 +4,6 @@ const profileController = require('../controllers/userProfileController');
 
 // Route to handle profile creation
 router.post('/create', profileController.createProfile);
+router.post('/login', profileController.userLogin);
 
 module.exports = router;
