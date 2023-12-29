@@ -41,44 +41,19 @@ const createProfile = async (req, res) => {
 
 
   const userLogin = async (req, res) => {  
-    const { mobileNumber } = req.body;
+        const { mobileNumber } = req.body;
 
-    // Simulate user data retrieval based on the provided mobile number
-    // Replace this with your actual user authentication logic
-    // For example, querying a database to find the user by mobile number
-    // await Profile.findOne({ mobileNumber }) // Assuming you have a User model
-    //   .then(async (user) => {
-    //     if (!user) {
-    //       return res.status(404).json({ success: false, message: 'User not found' });
-    //     }
-  
         // Check if a profile with the user's mobile number already exists
         const user = await Profile.findOne({ mobileNumber });
 
-        // console.log(user);
-  
-        // if (existingProfile) {
-        //   // If a profile with the mobile number already exists, respond with an error
-        //   return res.status(400).json({ error: 'Mobile number must be unique' });
-        // }
-  
-        // If the user is found and no profile exists, create a profile
-        // const newProfile = new Profile({
-        //   fullname: user.name,
-        //   email: user.email,
-        //   mobileNumber: user.mobileNumber,
-        //   city: user.city,
-        //   referralCode: user.referralCode,
-        // });
-  
-        // // Save the profile to the database
-        // const savedProfile = await newProfile.save();
-  
+        if (!user) {
+          // If a profile with the mobile number already exists, respond with an error
+          return res.status(400).json({success: false, error: 'user not exist' });
+        }
+
         // Generate a JWT token for the authenticated admin user using the secret key from the .env file
         const token = jwt.sign({ userId: user._id }, process.env.SECRET_KEY, { expiresIn: '1h' });
-        // Create a JWT token for the user
-        // const token = jwt.sign({ userId: user.userId }, 'your_secret_key', { expiresIn: '1h' });
-  
+        // Create a JWT token for the user  
         // Respond with success, the token, and the user's profile
         res.json({
           success: true,
@@ -92,12 +67,37 @@ const createProfile = async (req, res) => {
             referralCode: user.referralCode         
           }
         });
-      // })
-      // .catch(error => {
-      //   console.error('Error during login:', error);
-      //   res.status(500).json({ success: false, message: 'Internal server error' });
-      // });
+  
   }
+
+  const userUpdate =  async (req, res) => {
+    const { name, email, mobileNumber, city, referralCode } = req.body;
+  
+    try {
+      // Find the user profile based on the provided mobile number
+      const existingProfile = await Profile.findOne({ mobileNumber });
+  
+      if (!existingProfile) {
+        return res.status(404).json({ success: false, error: 'User profile not found' });
+      }
+  
+      // Update the profile with the provided data
+      existingProfile.name = name;
+      existingProfile.email = email;
+      existingProfile.city = city;
+      existingProfile.referralCode = referralCode;
+  
+      // Save the updated profile
+      const updatedProfile = await existingProfile.save();
+  
+      // Respond with success and the updated profile
+      res.json({ success: true, user: updatedProfile });
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ success: false, error: 'Internal Server Error' });
+    }
+  }
+
 module.exports = {
-  createProfile, userLogin
+  createProfile, userLogin, userUpdate
 };
