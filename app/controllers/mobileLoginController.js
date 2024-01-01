@@ -1,21 +1,14 @@
-const twilio = require('twilio');
 const axios = require('axios');
 const dotenv = require('dotenv');
 dotenv.config();
 
 const User = require('../models/mobileLoginSchema');
 
-// Twilio setup
-// const accountSid = 'your-twilio-account-sid';
-// const authToken = 'your-twilio-auth-token';
-// const client = new twilio(accountSid, authToken);
-
 // Textlocal credentials
 const apiKey='NmY0MzMzNjQzNTUwNGE0YzU0NmY2YzQ0NzA0NzRiNTc=';
 const sender='WAYWHL'; // Your registered sender name
 
 // Textlocal API endpoint
-// const textlocalEndpoint = 'https://api.textlocal.in/send/';
 
 // Generate OTP
 const generateOTP = () => {
@@ -35,12 +28,7 @@ const requestOTP = async (req, res) => {
       { upsert: true, new: true }
     );
 
-    // Send OTP via SMS using Twilio
-    // await client.messages.create({
-    //   body: `Your OTP is: ${otp}`,
-    //   to: `+${mobileNumber}`,
-    //   from: 'your-twilio-phone-number',
-    // });
+
     // Prepare data for sending SMS
     let message = `Your OTP is: ${otp}`;
     const data = {

@@ -11,6 +11,8 @@ const userProfileRoutes = require('./routes/userProfileRoutes');
 const mobileLoginRoutes = require('./routes/mobileLoginRoutes');
 const bookingRoutes = require('./routes/bookingRoutes');
 const vehicleRoutes = require('./routes/vehicleRoutes');
+const vehicleTypesRouter = require('./routes/vehicleTypesRoutes'); // Assuming the above code is in a file named vehicleTypes.js
+
 
 
 require('dotenv').config();
@@ -75,6 +77,8 @@ app.use('/api', vehicleRoutes);
 app.use('/api/user-profile', userProfileRoutes); 
 app.use('/api/auth', userProfileRoutes); 
 app.use('/api/login', mobileLoginRoutes);
+// Use the vehicleTypesRouter for handling requests to /api/vehicle/types
+app.use('/api/vehicle', vehicleTypesRouter);
 
 // Define the login route
 // app.post('/api/auth/login', validateLoginBody, async (req, res) => {
