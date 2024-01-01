@@ -13,6 +13,9 @@ const bookingRoutes = require('./routes/bookingRoutes');
 const vehicleRoutes = require('./routes/vehicleRoutes');
 const vehicleTypesRouter = require('./routes/vehicleTypesRoutes'); // Assuming the above code is in a file named vehicleTypes.js
 const DeliveryDetailsRouter = require('./routes/DeliveryDetailsRoutes'); // Assuming the above code is in a file named vehicleTypes.js
+// Import the goodsTypesRouter
+const goodsTypesRouter = require('./routes/goodsTypesRoutes'); // Adjust the path as needed
+
 
 
 
@@ -81,6 +84,7 @@ app.use('/api/login', mobileLoginRoutes);
 // Use the vehicleTypesRouter for handling requests to /api/vehicle/types
 app.use('/api/vehicle', vehicleTypesRouter);
 app.use('/api/delivery', DeliveryDetailsRouter);
+app.use('/api/goods/', goodsTypesRouter);
 
 // Define the login route
 // app.post('/api/auth/login', validateLoginBody, async (req, res) => {
