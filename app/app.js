@@ -12,6 +12,7 @@ const mobileLoginRoutes = require('./routes/mobileLoginRoutes');
 const bookingRoutes = require('./routes/bookingRoutes');
 const vehicleRoutes = require('./routes/vehicleRoutes');
 const vehicleTypesRouter = require('./routes/vehicleTypesRoutes'); // Assuming the above code is in a file named vehicleTypes.js
+const DeliveryDetailsRouter = require('./routes/DeliveryDetailsRoutes'); // Assuming the above code is in a file named vehicleTypes.js
 
 
 
@@ -79,6 +80,7 @@ app.use('/api/auth', userProfileRoutes);
 app.use('/api/login', mobileLoginRoutes);
 // Use the vehicleTypesRouter for handling requests to /api/vehicle/types
 app.use('/api/vehicle', vehicleTypesRouter);
+app.use('/api/delivery', DeliveryDetailsRouter);
 
 // Define the login route
 // app.post('/api/auth/login', validateLoginBody, async (req, res) => {
