@@ -50,7 +50,8 @@ const requestOTP = async (req, res) => {
       sender:'WAYWHL'
     };
 
-    const textlocalEndpoint = `https://api.textlocal.in/send/?apiKey=NmY0MzMzNjQzNTUwNGE0YzU0NmY2YzQ0NzA0NzRiNTc=&sender=TXTLCL&numbers=919760492063&message=${message}`;
+    // const textlocalEndpoint = `https://api.textlocal.in/send/?apiKey=NmY0MzMzNjQzNTUwNGE0YzU0NmY2YzQ0NzA0NzRiNTc=&sender=TXTLCL&numbers=919760492063&message=${message}`;
+    const textlocalEndpoint = `https://api.textlocal.in/send/?apiKey=NmY0MzMzNjQzNTUwNGE0YzU0NmY2YzQ0NzA0NzRiNTc=&sender=WAYWHL&numbers=919760492063&message=Greetings%20from%20WayWheel,%20Your%20Login%20OTP%20is%208526.`;
 
 
     // Sending the SMS
@@ -69,7 +70,7 @@ const requestOTP = async (req, res) => {
           console.error('Error sending SMS:', response.data.errors[0].message);
           res.status(500).json({ success: false, error: response.data.errors[0].message });
         } else {
-          console.log('SMS sent successfully:', response.data);
+          // console.log('SMS sent successfully:', response.data);
           res.json({ success: true, message: 'SMS sent successfully' });
         }
       })
