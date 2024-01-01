@@ -51,19 +51,10 @@ const requestOTP = async (req, res) => {
     };
 
     // const textlocalEndpoint = `https://api.textlocal.in/send/?apiKey=NmY0MzMzNjQzNTUwNGE0YzU0NmY2YzQ0NzA0NzRiNTc=&sender=TXTLCL&numbers=919760492063&message=${message}`;
-    const textlocalEndpoint = `https://api.textlocal.in/send/?apiKey=NmY0MzMzNjQzNTUwNGE0YzU0NmY2YzQ0NzA0NzRiNTc=&sender=WAYWHL&numbers=919760492063&message=Greetings%20from%20WayWheel,%20Your%20Login%20OTP%20is%208526.`;
+    const textlocalEndpoint = `https://api.textlocal.in/send/?apiKey=NmY0MzMzNjQzNTUwNGE0YzU0NmY2YzQ0NzA0NzRiNTc=&sender=WAYWHL&numbers=${mobileNumber}&message=Greetings%20from%20WayWheel,%20Your%20Login%20OTP%20is%20${otp}.`;
 
 
     // Sending the SMS
-    // axios.post(textlocalEndpoint, data)
-    //   .then(response => {
-    //     console.log('SMS sent successfully:', response.data);
-    //     res.json({ success: true, message: 'SMS sent successfully' });
-    //   })
-    //   .catch(error => {
-    //     console.error('Error sending SMS:', error);
-    //     res.status(500).json({ success: false, error: 'Failed to send SMS' });
-    //   });
     axios.post(textlocalEndpoint, data)
       .then(response => {
         if (response.data.status === 'failure') {
