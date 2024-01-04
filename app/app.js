@@ -17,6 +17,8 @@ const DeliveryDetailsRouter = require('./routes/DeliveryDetailsRoutes'); // Assu
 const goodsTypesRouter = require('./routes/goodsTypesRoutes'); // Adjust the path as needed
 const bookingNewRouter = require('./routes/bookingNewRoutes'); // Adjust the path as needed
 const billingRouter = require('./routes/billingRoutes'); // Import the billing router
+const tripRoutes = require('./routes/tripRoutes');
+
 
 
 require('dotenv').config();
@@ -88,6 +90,8 @@ app.use('/api/goods', goodsTypesRouter);
 app.use('/api/booking', bookingNewRouter);
 // Use the billing router for handling /api/billing requests
 app.use('/api/billing', billingRouter);
+// Routes
+app.use('/api/trip', tripRoutes);
 
 // Define the login route
 // app.post('/api/auth/login', validateLoginBody, async (req, res) => {
