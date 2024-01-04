@@ -65,6 +65,29 @@ const requestOTP = async (req, res) => {
   }
 };
 
+const verifyOTP = async (req, res) => {
+  try {
+    const { mobileNumber, otp } = req.body;
+
+    // Find the user with the provided mobile number
+    const user = await User.findOne({ mobileNumber });
+
+    if (!user) {
+      return res.json({ success: false, message: 'OTP not generated for this number' });
+    }
+
+    // Check if the provided OTP matches the stored OTP
+    if (otp === user.otp) {
+      return res.json({ success: true, message: 'OTP verified successfully' });
+    } else {
+      return res.json({ success: false, message: 'Invalid OTP' });
+    }
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ success: false, message: 'Internal Server Error' });
+  }
+};
+
 module.exports = {
-  requestOTP,
+  requestOTP,verifyOTP
 };
