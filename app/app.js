@@ -19,6 +19,10 @@ const bookingNewRouter = require('./routes/bookingNewRoutes'); // Adjust the pat
 const billingRouter = require('./routes/billingRoutes'); // Import the billing router
 const tripRoutes = require('./routes/tripRoutes');
 
+//@driver app
+const driverRoutes = require('./routes/driverRoutes');
+
+
 
 
 require('dotenv').config();
@@ -92,6 +96,9 @@ app.use('/api/booking', bookingNewRouter);
 app.use('/api/billing', billingRouter);
 // Routes
 app.use('/api/trip', tripRoutes);
+
+// Routes
+app.use('/api/driver', driverRoutes);
 
 // Define the login route
 // app.post('/api/auth/login', validateLoginBody, async (req, res) => {
