@@ -111,7 +111,7 @@ const createProfile = async (req, res) => {
         }
 
         // Delete the user profile
-        await existingProfile.remove();
+        await existingProfile.deleteOne(); // Use deleteOne() method for deletion
 
         // Respond with success message
         res.json({ success: true, message: 'Customer successfully deleted.' });
@@ -120,6 +120,7 @@ const createProfile = async (req, res) => {
         res.status(500).json({ success: false, error: 'Internal Server Error' });
     }
 };
+
 
 
 module.exports = {
