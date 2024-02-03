@@ -98,6 +98,30 @@ const createProfile = async (req, res) => {
     }
   }
 
+
+  const deleteUser = async (req, res) => {
+    const { mobileNumber } = req.body;
+
+    try {
+        // Find the user profile based on the provided mobile number
+        const existingProfile = await Profile.findOne({ mobileNumber });
+
+        if (!existingProfile) {
+            return res.status(404).json({ success: false, error: 'User profile not found' });
+        }
+
+        // Delete the user profile
+        await existingProfile.remove();
+
+        // Respond with success message
+        res.json({ success: true, message: 'Customer successfully deleted.' });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ success: false, error: 'Internal Server Error' });
+    }
+};
+
+
 module.exports = {
-  createProfile, userLogin, userUpdate
+  createProfile, userLogin, userUpdate, deleteUser
 };
