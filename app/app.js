@@ -21,6 +21,8 @@ const tripRoutes = require('./routes/tripRoutes');
 
 //@driver app
 const driverRoutes = require('./routes/driverRoutes');
+const mobileDriverLoginRoutes = require('./routes/mobileDriverLoginRoutes');
+
 
 
 
@@ -99,6 +101,8 @@ app.use('/api/trip', tripRoutes);
 
 // Routes
 app.use('/api/driver', driverRoutes);
+app.use('/api/driver/login', mobileDriverLoginRoutes);
+
 
 // Define the login route
 // app.post('/api/auth/login', validateLoginBody, async (req, res) => {
