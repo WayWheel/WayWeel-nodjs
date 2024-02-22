@@ -22,6 +22,8 @@ const tripRoutes = require('./routes/tripRoutes');
 //@driver app
 const driverRoutes = require('./routes/driverRoutes');
 const mobileDriverLoginRoutes = require('./routes/mobileDriverLoginRoutes');
+const driverProfileRoutes = require('./routes/driverProfileRoutes');
+
 
 
 
@@ -102,6 +104,9 @@ app.use('/api/trip', tripRoutes);
 // Routes
 app.use('/api/driver', driverRoutes);
 app.use('/api/driver/login', mobileDriverLoginRoutes);
+app.use('/api/driver/profile', driverProfileRoutes);
+
+
 
 
 // Define the login route
