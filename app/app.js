@@ -1,4 +1,6 @@
 const express = require('express');
+const cors = require('cors');
+
 // const passport = require('./config/passport');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
@@ -38,6 +40,19 @@ const app = express();
 // mongoose.connect('mongodb://localhost/login-app', { useNewUrlParser: true, useUnifiedTopology: true });
 // mongoose.connect('MONGODB_ATLAS_CONNECTION_STRING', { useNewUrlParser: true, useUnifiedTopology: true });
 const MONGODB_URI = process.env.MONGODB_ATLAS_CONNECTION_STRING;
+
+
+// app.use(cors());
+const corsOptions = {
+  origin: '*',
+  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+  preflightContinue: false,
+  optionsSuccessStatus: 204,
+  credentials: true, // If you need to include credentials (cookies, HTTP authentication) in the requests
+};
+
+app.use(cors(corsOptions));
+
 
 
 app.use(bodyParser.json());
