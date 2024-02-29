@@ -120,6 +120,7 @@ app.use('/api/trip', tripRoutes);
 app.use('/api/driver', driverRoutes);
 app.use('/api/driver/login', mobileDriverLoginRoutes);
 app.use('/api/driver/profile', driverProfileRoutes);
+app.use('/api/alldriver', driverProfileRoutes);
 
 
 
