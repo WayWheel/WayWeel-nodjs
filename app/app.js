@@ -105,6 +105,8 @@ app.use('/api', vehicleRoutes);
 // Routes
 app.use('/api/user-profile', userProfileRoutes); 
 app.use('/api/auth', userProfileRoutes); 
+app.use('/api/allusers', userProfileRoutes); 
+
 app.use('/api/login', mobileLoginRoutes);
 // Use the vehicleTypesRouter for handling requests to /api/vehicle/types
 app.use('/api/vehicle', vehicleTypesRouter);
@@ -120,7 +122,7 @@ app.use('/api/trip', tripRoutes);
 app.use('/api/driver', driverRoutes);
 app.use('/api/driver/login', mobileDriverLoginRoutes);
 app.use('/api/driver/profile', driverProfileRoutes);
-app.use('/api/alldriver', driverProfileRoutes);
+app.use('/api/alldrivers', driverProfileRoutes);
 
 
 

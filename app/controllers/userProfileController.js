@@ -121,8 +121,24 @@ const createProfile = async (req, res) => {
     }
 };
 
+const getAllUserDetails = async (req, res) => {
+  try {
+      // Find all user profiles
+      const allProfiles = await Profile.find();
+
+      if (!allProfiles || allProfiles.length === 0) {
+          return res.status(404).json({ success: false, error: 'No user profiles found' });
+      }
+
+      // Respond with the array of user profiles
+      res.json({ success: true, profiles: allProfiles });
+  } catch (error) {
+      console.error(error);
+      res.status(500).json({ success: false, error: 'Internal Server Error' });
+  }
+};
 
 
 module.exports = {
-  createProfile, userLogin, userUpdate, deleteUser
+  createProfile, userLogin, userUpdate, deleteUser, getAllUserDetails
 };
