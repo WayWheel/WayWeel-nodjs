@@ -30,6 +30,14 @@ const profileSchema = new mongoose.Schema({
     trim: true,
     // You may want to add validation for the referral code format here
   },
+  userStatus: {
+      type: String,
+      enum: ['active', 'blocked'],
+      default: 'active',
+      required: true,
+  },
+}, {
+  timestamps: true,
 });
 
 const Profile = mongoose.model('Profile', profileSchema);
