@@ -65,6 +65,24 @@ const fetchDriverDetails = async (req, res) => {
     }
 };
 
+// const getAllDriverDetails = async (req, res) => {
+//     try {
+//         const drivers = await Driver.find();
+
+//         if (!drivers || drivers.length === 0) {
+//             return res.status(404).json({ success: false, message: 'No drivers found' });
+//         }
+
+//         res.json({
+//             success: true,
+//             drivers,
+//         });
+//     } catch (error) {
+//         console.error(error);
+//         res.status(500).json({ success: false, message: 'Internal Server Error' });
+//     }
+// };
+
 const getAllDriverDetails = async (req, res) => {
     try {
         const drivers = await Driver.find();
@@ -73,14 +91,24 @@ const getAllDriverDetails = async (req, res) => {
             return res.status(404).json({ success: false, message: 'No drivers found' });
         }
 
+        const formattedDrivers = drivers.map(driver => ({
+            driverId: driver._id,
+            name: driver.profile.driverName,
+            registrationDate: driver.createdAt, // Assuming you have a createdAt field in your schema
+            contact: driver.profile.driverPhone,
+            city: driver.profile.city,
+            status: driver.profile.status,
+        }));
+
         res.json({
             success: true,
-            drivers,
+            data: formattedDrivers,
         });
     } catch (error) {
         console.error(error);
         res.status(500).json({ success: false, message: 'Internal Server Error' });
     }
 };
+ 
 
 module.exports = { registerDriver, updateDriver, fetchDriverDetails, getAllDriverDetails };

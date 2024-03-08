@@ -26,6 +26,11 @@ const driverSchema = new mongoose.Schema({
         driverPhone: String,
         city: String,
         referralCode: String,
+        status: { 
+            type: String, 
+            enum: ['pending', 'approved', 'unapproved'], 
+            default: 'pending', 
+        },
     },
     accountDetails: {
         bankName: { type: String, required: true },
@@ -35,6 +40,8 @@ const driverSchema = new mongoose.Schema({
         upi: String,
     },
     preferredAppLanguage: { type: String, required: true },
+}, {
+    timestamps: true, // This option adds createdAt and updatedAt fields
 });
 
 const Driver = mongoose.model('DriverProfile', driverSchema);
