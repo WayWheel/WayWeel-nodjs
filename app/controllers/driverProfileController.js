@@ -111,4 +111,61 @@ const getAllDriverDetails = async (req, res) => {
 };
  
 
-module.exports = { registerDriver, updateDriver, fetchDriverDetails, getAllDriverDetails };
+const getAllDriverInfoById = async (req, res) => {
+    try {
+        const { driverId } = req.params; // Use driverId instead of driverid
+        // console.log(driverId);
+
+        const driver = await Driver.findById({_id:driverId});
+
+        if (!driver) {
+            return res.status(404).json({ success: false, message: 'Driver not found' });
+        }
+
+        const {
+            _id: id,
+            profile: {
+                driverName: name,
+                driverPhone: phone,
+                city,
+                state,
+                driverEmail: email,
+                driverProfileImage: imgUrl,
+            },
+            createdAt: registrationDate,
+            verificationStatus,
+            vehicleType,
+            vehicleModel: VehicleModel,
+            vehicleNumber: vehicleNo,
+            images: {
+                aadharCardFront: idProof,
+            },
+        } = driver;
+
+        res.json({
+            success: true,
+            data: [{
+                driverId: id, // Fix here: use driverId instead of id
+                name,
+                phone,
+                city,
+                state,
+                email,
+                imgUrl,
+                registrationDate,
+                verificationStatus,
+                vehicleType,
+                VehicleModel,
+                vehicleNo,
+                idProof,
+            }],
+        });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ success: false, message: 'Internal Server Error' });
+    }
+};
+
+
+
+module.exports = { registerDriver, updateDriver, fetchDriverDetails, getAllDriverDetails, getAllDriverInfoById };
