@@ -8,5 +8,6 @@ router.post('/login', profileController.userLogin);
 router.put('/profile', profileController.userUpdate);
 router.delete('/delete-user', profileController.deleteUser);
 router.get('/', profileController.getAllUserDetails);
+router.get('/:customerId', profileController.getUserInfoById);
 
 module.exports = router;

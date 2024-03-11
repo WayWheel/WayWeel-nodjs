@@ -165,8 +165,41 @@ const getAllUserDetails = async (req, res) => {
   }
 };
 
+const getUserInfoById = async (req, res) => {
+  const { customerId } = req.params; // Assuming the parameter is named userId
+
+  try {
+      // Find the user profile by ID
+      const userProfile = await Profile.findById({_id:customerId});
+
+      if (!userProfile) {
+          return res.status(404).json({ success: false, error: 'User profile not found' });
+      }
+
+      // Format the user profile
+      const formattedProfile = {
+          customerId: userProfile._id,
+          name: userProfile.fullname,
+          registrationDate: userProfile.createdAt, // Assuming you have a createdAt field in your schema
+          contact: userProfile.mobileNumber,
+          city: userProfile.city,
+          state: userProfile.state, // Add state field
+          email: userProfile.email, // Add email field
+          imgUrl: userProfile.imgUrl, // Add imgUrl field
+          userStatus: userProfile.userStatus,
+      };
+
+      // Respond with the formatted user profile
+      res.json({ success: true, data: [formattedProfile] });
+  } catch (error) {
+      console.error(error);
+      res.status(500).json({ success: false, error: 'Internal Server Error' });
+  }
+};
+
+
 
 
 module.exports = {
-  createProfile, userLogin, userUpdate, deleteUser, getAllUserDetails
+  createProfile, userLogin, userUpdate, deleteUser, getAllUserDetails,getUserInfoById
 };

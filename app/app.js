@@ -106,6 +106,7 @@ app.use('/api', vehicleRoutes);
 app.use('/api/user-profile', userProfileRoutes); 
 app.use('/api/auth', userProfileRoutes); 
 app.use('/api/allusers', userProfileRoutes); 
+app.use('/customer', userProfileRoutes); 
 
 app.use('/api/login', mobileLoginRoutes);
 // Use the vehicleTypesRouter for handling requests to /api/vehicle/types
